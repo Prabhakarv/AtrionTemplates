@@ -1,0 +1,17 @@
+unicode_literals
+Throttled
+status
+ungettext_lazy
+MethodNotAllowed
+AuthenticationFailed
+UnsupportedMediaType
+APIException
+_force_text_recursive
+_
+PermissionDenied
+NotAuthenticated
+math
+ParseError
+NotAcceptable
+force_text
+ValidationError

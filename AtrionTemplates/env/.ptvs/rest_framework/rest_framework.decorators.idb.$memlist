@@ -1,0 +1,12 @@
+parser_classes
+six
+authentication_classes
+unicode_literals
+types
+detail_route
+renderer_classes
+list_route
+permission_classes
+throttle_classes
+api_view
+APIView

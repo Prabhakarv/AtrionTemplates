@@ -1,0 +1,14 @@
+rest_framework
+urlparse
+get_script_prefix
+HyperlinkedRelatedField
+unicode_literals
+_
+warnings
+ObjectDoesNotExist
+resolve
+HyperlinkedIdentityField
+Field
+reverse
+ValidationError
+NoReverseMatch

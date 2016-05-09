@@ -1,0 +1,3 @@
+APIView
+ViewWithNonASCIICharactersInDocstring
+UTF8_TEST_DOCSTRING

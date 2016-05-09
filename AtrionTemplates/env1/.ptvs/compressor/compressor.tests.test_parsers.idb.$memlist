@@ -1,0 +1,16 @@
+CompressorTestCase
+Html5LibParserTests
+SOURCE_HUNK
+os
+BeautifulSoupParserTests
+LxmlParserTests
+unittest
+BeautifulSoup
+settings
+with_statement
+html5lib
+ParserTestCase
+SOURCE_FILE
+lxml
+override_settings
+HtmlParserTests

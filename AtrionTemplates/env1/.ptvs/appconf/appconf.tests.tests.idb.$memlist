@@ -1,0 +1,17 @@
+ProxyConf
+SeparateConfTests
+YetAnotherPrefixConfTests
+SeparateConf
+PrefixConfTests
+RequiredSettingsTests
+TestCase
+custom_holder
+settings
+absolute_import
+ImproperlyConfigured
+TestConf
+PrefixConf
+YetAnotherPrefixConf
+AppConf
+TestConfTests
+CustomHolderConf

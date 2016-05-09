@@ -1,0 +1,9 @@
+test_offline
+test_storages
+test_filters
+test_jinja2ext
+test_parsers
+test_templatetags
+test_base
+test_signals
+precompiler

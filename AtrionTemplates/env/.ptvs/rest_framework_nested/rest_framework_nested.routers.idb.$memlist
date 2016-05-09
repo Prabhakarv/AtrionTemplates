@@ -1,0 +1,4 @@
+rest_framework
+unicode_literals
+NestedSimpleRouter
+SimpleRouter
