@@ -12,11 +12,12 @@ from django.contrib import admin
 admin.autodiscover()
 
 
-router = routers.SimpleRouter()
+router = routers.SimpleRouter(trailing_slash=False)
 router.register(r'accounts', AccountViewSet)
 router.register(r'projects',ProjectViewSet)
 router.register(r'customers',CustomerViewSet)
 router.register(r'employees',EmployeeViewSet)
+
 
 
 urlpatterns = patterns(

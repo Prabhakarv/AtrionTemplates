@@ -56,6 +56,8 @@ ROOT_URLCONF = 'AtrionTemplates.urls'
 
 WSGI_APPLICATION = 'AtrionTemplates.wsgi.application'
 
+APPEND_SLASH = False
+
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases

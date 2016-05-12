@@ -1973,6 +1973,16 @@
     <Content Include="static\bower_components\ng-table\test\tableDynamicSpec.js" />
     <Content Include="static\bower_components\ng-table\test\tableParamsSpec.js" />
     <Content Include="static\bower_components\ng-table\test\tableSpec.js" />
+    <Content Include="static\bower_components\ngAlertify\.bower.json" />
+    <Content Include="static\bower_components\ngAlertify\bower.json" />
+    <Content Include="static\bower_components\ngAlertify\gulpfile.js" />
+    <Content Include="static\bower_components\ngAlertify\karma-ci.conf.js" />
+    <Content Include="static\bower_components\ngAlertify\karma.conf.js" />
+    <Content Include="static\bower_components\ngAlertify\ngAlertify.js" />
+    <Content Include="static\bower_components\ngAlertify\ngAlertify.min.js" />
+    <Content Include="static\bower_components\ngAlertify\package.json" />
+    <Content Include="static\bower_components\ngAlertify\README.md" />
+    <Content Include="static\bower_components\ngAlertify\src\ngAlertify.js" />
     <Content Include="static\bower_components\ngDialog\.bower.json" />
     <Content Include="static\bower_components\ngDialog\bower.json" />
     <Content Include="static\bower_components\ngDialog\CHANGELOG.md" />
@@ -2329,6 +2339,10 @@
     <Folder Include="static\bower_components\ng-table\docs\template\ngdoc\api\" />
     <Folder Include="static\bower_components\ng-table\docs\template\ngdoc\lib\" />
     <Folder Include="static\bower_components\ng-table\test\" />
+    <Folder Include="static\bower_components\ngAlertify\" />
+    <Folder Include="static\bower_components\ngAlertify\lib\" />
+    <Folder Include="static\bower_components\ngAlertify\lib\alertify.js\" />
+    <Folder Include="static\bower_components\ngAlertify\src\" />
     <Folder Include="static\bower_components\ngDialog\" />
     <Folder Include="static\bower_components\ngDialog\css\" />
     <Folder Include="static\bower_components\ngDialog\js\" />
