@@ -4,7 +4,7 @@
 	<title>Atrion Project List</title>
 </head>
  <div ng-app = "thinkster" ng-controller = "ProjectController" class="well  well-lg">
-	  <table tr-ng-grid=''  items="Projectdata" class = "table formbackgroundcolor">
+	  <table tr-ng-grid=''  items="Projectdata" class = "table formbackgroundcolor" ng-grid="gridOptions">
 				  <thead>
 						<tr>
 							<th field-name="project_name" display-name="Project" enable-filtering="true" enable-sorting="true" cell-width="10em" display-align="right">
@@ -22,6 +22,13 @@
 						</tr>
 				</thead>
 		  </table>  
+     <div class="well">
+                <p>Current page:
+                        <input type="number" min="1" max="{{ pagination.getTotalPages() }}" ng-model="pagination.pageNumber" ng-change="load()">of {{ pagination.getTotalPages() }}
+                </p>
+     </div>
+<button type="button" class="btn btn-success" ng-click="pagination.previousPage()">previous page</button>
+<button type="button" class="btn btn-success" ng-click="pagination.nextPage()">next page</button>
 	 <form class="form-horizontal formbackgroundcolor" ng-submit="submit()" role="form">
 		  <hr />
 		 <h3>Add New Project</h3>
@@ -101,7 +108,7 @@
 			<hr/>  					      			                  			  
 				  <div class="form-group"> 
 					<div class="col-sm-offset-6 col-sm-10">
-					  <button type="submit"  class="btn btn-primary">Add Project</button>
+					  <button type="submit"  class="btn btn-primary">Add Project</button>                                              
 					</div>
 				  </div>		  
 		  <hr />

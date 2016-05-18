@@ -17,19 +17,21 @@ class ProjectViewSet(viewsets.ModelViewSet):
 	serializer_class = ProjectDetailsSerializer
 
 
-	def perform_create(self, serializer):
+	def perform_create(self, serializer):		
 		custid = self.request.data.get("customer_id")
 		empid = self.request.data.get("employee_id")
+		projstatus =self.request.data.get("project_status")
 		serializer.save(
-            customer=Customer.objects.get(pk=custid),
-            employee=Employee.objects.get(pk=empid))
+					customer=Customer.objects.get(pk=custid),
+					employee=Employee.objects.get(pk=empid),					
+		)
 
 	def perform_update(self, serializer):		
 		custid = self.request.data.get("customer_id")
 		empid = self.request.data.get("employee_id")
 		serializer.save(
-            customer=Customer.objects.get(pk=custid),
-            employee=Employee.objects.get(pk=empid))
+		customer=Customer.objects.get(pk=custid),
+		employee=Employee.objects.get(pk=empid))
 			
 	def perform_destroy(self, instance):
 			instance = self.get_object()

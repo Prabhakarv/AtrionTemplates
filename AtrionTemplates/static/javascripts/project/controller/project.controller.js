@@ -7,7 +7,7 @@
 
     angular
       .module('thinkster.projects.controllers', ['ngTable', 'ngAlertify'])
-        .controller('ProjectController', function ($scope, Project, $http, Employee, alertify, Customer) {
+        .controller('ProjectController', function ($scope, Project, $http, Employee, alertify, Customer, $route, $templateCache) {
             //alertify.alert("Hello, world!");
             $scope.status = {
                 name: 'Initial'
@@ -22,7 +22,15 @@
             $scope.selectedItem;
             $scope.selectedCustomer;
             $scope.selectedCustomerid;
-            $scope.selectedEmployeeid;
+            $scope.selectedEmployeeid;            
+            $scope.Projectdata;
+
+            $scope.refresh = function () {
+                var currentPageTemplate = $route.current.templateUrl;
+                $templateCache.remove(currentPageTemplate);
+                $route.reload();
+            };
+
 
             //get the selectde employee from the dropdown
             $scope.dropboxitemselected = function (item) {
@@ -51,7 +59,7 @@
 
             //Get all the Project data
             var Projectentries = Project.query(function () {              
-                $scope.Projectdata = Projectentries;
+                $scope.Projectdata = Projectentries;               
             });           
 
           
@@ -62,16 +70,21 @@
             $scope.submit = function () {
                 var newProject = new Project();
                 newProject.project_name = $scope.projecttitle.text;
-                newProject.project_status = $scope.status;
-                alertify.alert($scope.status);
+                newProject.project_status = $scope.status.name;               
                 var date = moment($scope.myDate).format('YYYY-MM-DD');
                 newProject.employee_id = $scope.selectedEmployeeid
                 newProject.customer_id = $scope.selectedCustomerid
                 newProject.project_startdate = date;
                 newProject.email = $scope.projecttitle.email;
-                newProject.$save(function () { console.log('Project details saved'); });
+                newProject.$save(
+                        function ()
+                        {                            
+                            $scope.refresh();
+                            toastr.success('Project Saved successfully!', 'Atrion Templates')
+                          
+                        });             
             }
-
+            var baseUrl = '/api/v1/projects/';
             //Date control Handler
             $scope.myDate = new Date();
 
@@ -90,5 +103,42 @@
                 return day === 0 || day === 6;
             }
 
+     
+            $scope.pagination = {
+                pageSize: 5,
+                pageNumber: 1,
+                totalItems: null,
+                getTotalPages: function () {
+                    return Math.ceil(this.totalItems / this.pageSize);
+                },
+                nextPage: function () {
+                    if (this.pageNumber < this.getTotalPages()) {
+                        this.pageNumber++;
+                        $scope.load();
+                    }
+                },
+                previousPage: function () {
+                    if (this.pageNumber > 1) {
+                        this.pageNumber--;
+                        $scope.load();
+                    }
+                }
+            }
+
+            self.readAll = function (pageSize, pageNumber) {
+                return $http({
+                    method: 'GET',
+                    url: baseUrl + objectName,
+                    params: {
+                        pageSize: pageSize,
+                        pageNumber: pageNumber
+                    },
+                    headers: anonymousToken
+                }).then(function (response) {
+                    return response.data;
+                });
+            };
+
         });
+    
 })();
