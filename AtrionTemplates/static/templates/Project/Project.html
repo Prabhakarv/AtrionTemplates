@@ -4,7 +4,7 @@
 	<title>Atrion Project List</title>
 </head>
  <div ng-app = "thinkster" ng-controller = "ProjectController" class="well  well-lg">
-	  <table tr-ng-grid=''  items="Projectdata" class = "table formbackgroundcolor">
+	  <table tr-ng-grid=''  items="Projectdata" class = "table formbackgroundcolor" ng-grid="gridOptions">
 				  <thead>
 						<tr>
 							<th field-name="project_name" display-name="Project" enable-filtering="true" enable-sorting="true" cell-width="10em" display-align="right">
@@ -22,79 +22,95 @@
 						</tr>
 				</thead>
 		  </table>  
-     
-	 
-
-	 <form class="form-horizontal formbackgroundcolor" role="form">
+     <div class="well">
+                <p>Current page:
+                        <input type="number" min="1" max="{{ pagination.getTotalPages() }}" ng-model="pagination.pageNumber" ng-change="load()">of {{ pagination.getTotalPages() }}
+                </p>
+     </div>
+<button type="button" class="btn btn-success" ng-click="pagination.previousPage()">previous page</button>
+<button type="button" class="btn btn-success" ng-click="pagination.nextPage()">next page</button>
+	 <form class="form-horizontal formbackgroundcolor" ng-submit="submit()" role="form">
 		  <hr />
 		 <h3>Add New Project</h3>
 		 <hr />
 				  <div class="form-group">
 					<label class="control-label col-sm-2" for="email">Project Title:</label>
-					<div class="col-sm-10">
-					  <input type="text" class="form-control" id="email" placeholder="Enter Project Title">
+					<div class="col-sm-10">					 
+                        <input type="text" class="form-control" name="input" ng-model="projecttitle.text" required ng-trim="false">
 					</div>
 				  </div>
+       <!--  <tt>text = {{projecttitle.text}}</tt><br/>-->
 		  <hr />
+          <!--<div class="container"> -->
 		 <div class="form-group"> 
-			 <label class="control-label col-sm-2" for="email">Project Status:</label>
-				  <label class="radio-inline">
-					  <input type="radio" name="optradio">Initial
-					</label>
-					<label class="radio-inline">
-					  <input type="radio" name="optradio">In Progress
-					</label>
-					<label class="radio-inline">
-					  <input type="radio" name="optradio">Completed
-					</label>
-			 </div>
+			 <label class="control-label col-sm-2" for="email">Project Status:</label>			             
+                  <label class="radio-inline">
+                        <input type="radio" ng-model="status.name" value="Initial">
+                        Initial
+                  </label>
+                 <label class="radio-inline">
+                        <input type="radio" ng-model="status.name" value="In Progress">
+                        In Progress
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" ng-model="status.name" value="Complete">
+                        Complete
+                </label>
+            <!--    <tt>status = {{status.name | json}}</tt><br/>-->
+                </div>	
+              <!--</div>		 -->
 		  <hr />	  
+         <!--<div class="container"> -->
 		   <div class="form-group"> 
 			 <label class="control-label col-sm-2" for="Date">Project Start Date:</label>		       
 				<md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker> 
 			   </div>
-		 <hr />  
-		
-		 <div class="form-group"> 
-		 <label class="control-label col-sm-2">Assign Employee :</label>	                        
-                            <ui-select ng-model="selectedItem" theme="bootstrap" style="width:200px;">
-                                <ui-select-match>
-                                    <span ng-bind="$select.selected.employee_firstname"></span>
-                                </ui-select-match>
-                                <ui-select-choices repeat="item in (Employeedata | filter: $select.search) track by item.id">
-                                        <span ng-bind="item.employee_firstname"></span>
-                                </ui-select-choices>
-                            </ui-select>
-
-			                      <!--<div>
-                          <div class="btn-group" dropdown>
-                            <button type="button" class="btn btn-default" ng-click="submit()">{{Employeedata.employee_firstname}}</button>
-                            <button type="button" class="btn btn-default dropdown-toggle">
-                              <span class="caret"></span>
-                              <span class="sr-only">Split button!</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                              <li ng-repeat="emp in Employeedata track by $index">
-                                <a href="#" ng-click="setAction(action)">{{emp.employee_firstname}}</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>-->
-                        <!--<select ng-model="selectedEmployee"  ng-options="e as e.employee_firstname for e in Employeedata"></select>-->
-            
-                    <!--<select id="mySel" >
-                        <option ng-repeat="item in Employeedata" ng-selected="item.selected" ng-model="selectedEmployee">{{item.employee_firstname}}</option>
-                    </select>-->
-			        </div>
-            
-					 <hr>  					                  			  
-				  <div class="form-group"> 
-					<div class="col-sm-offset-2 col-sm-10">
-					  <button type="submit" class="btn btn-primary">Add Project</button>
+		 <hr />  	
+         <div class="form-group">
+					<label class="control-label col-sm-2" for="email">Customer Email:</label>
+					<div class="col-sm-10">					 
+                        <input type="email" class="form-control" name="input" ng-model="projecttitle.email" required ng-trim="false">
 					</div>
 				  </div>
-		  <hr />
-	   
+         <hr/>
+         <!--</div>	    -->
+          <div class="form-group">            		      
+               <label class="control-label col-sm-2" for="repeatSelect">Select Employee: </label>       		   			 
+                 <div class="dropdown div-inline">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{selectedItem}}                           
+                                <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li ng-repeat="e in Employeedata">
+                            <a ng-click="dropboxitemselected(e)">{{e.employee_firstname}}</a>            
+                        </li>
+                    </ul>
+                   </div>
+            </div>
+                             	                   
+			<hr/>  		
+           <div class="form-group">            		      
+               <label class="control-label col-sm-2" for="repeatSelect">Select Customer: </label>       		   			 
+                 <div class="dropdown div-inline">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{selectedCustomer}}                           
+                                <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li ng-repeat="c in Customerdata">
+                            <a ng-click="dropboxcustomerselected(c)">{{c.cust_firstname}}</a>            
+                        </li>
+                    </ul>
+                   </div>
+            </div>
+                             	                   
+			<hr/>  					      			                  			  
+				  <div class="form-group"> 
+					<div class="col-sm-offset-6 col-sm-10">
+					  <button type="submit"  class="btn btn-primary">Add Project</button>                                              
+					</div>
+				  </div>		  
 		  <hr />
 	</form>      
    </div>

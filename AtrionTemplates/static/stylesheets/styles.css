@@ -1,6 +1,8 @@
 .formbackgroundcolor {
     background-color: white;
 }
+
+
 .datepickerdemoBasicUsage {
   /** Demo styles for mdCalendar. */ }
   .datepickerdemoBasicUsage md-content {
@@ -14,7 +16,7 @@
   .inputdemoBasicUsage .md-datepicker-button {
   width: 36px; }
 
-    body {
+    selectbody {
       padding: 15px;
     }
 
@@ -27,6 +29,10 @@
       top: 36px;
     }
 
+    .div-inline{
+    
+    display:inline-block;
+}
 
 /*
 Copyright 2016 Google Inc. All Rights Reserved. 

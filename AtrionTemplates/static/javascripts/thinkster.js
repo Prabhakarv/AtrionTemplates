@@ -11,7 +11,7 @@ console.log(" Prabhakar: im in thinkster app")
           'ngTable',
           'ngResource',
           'ngMaterial',
-          'ngMessages',
+          'ngMessages',          
           //'material.svgAssetsCache'
         ]);
 

@@ -35,7 +35,7 @@ class ProjectDetails(models.Model):
 	employee=models.ForeignKey(Employee)
 	project_name = models.TextField(max_length=50)
 	project_startdate = models.DateField(auto_now=False, default=None)
-	project_status = models.TextField(default="Initial")
+	project_status = models.TextField(max_length=50, default="Initial")
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 
